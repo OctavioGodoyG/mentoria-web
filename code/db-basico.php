@@ -1,3 +1,3 @@
 <?php
 
-echo "Archivo de bd";
+echo "Archivo de conección a bd";
