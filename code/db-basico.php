@@ -57,14 +57,14 @@ try  {
 try {
 
     $sql = "SELECT id, full_name, email, user_name FROM users;";
-    // $result = $db->prepare($sql);
+    $stmt = $db->prepare($sql);
     $stmt->execute();
   
     // set the resulting array to associative
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach($result as $user) {
-        echo "id: " . $user["id"] . "<br>";
+    foreach($users as $user) {
+        echo "full_name: " . $user["full_name"] . "<full_name>";
     }
   } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
