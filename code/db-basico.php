@@ -1,6 +1,6 @@
 <?php
 
-$db_name = "registro2";
+$db_name = "registro";
 $db_user = "registro-user";
 $db_pass = "user1";
 
