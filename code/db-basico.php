@@ -63,8 +63,8 @@ try {
     // set the resulting array to associative
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach($result as $users) {
-        echo "id: " . $users["id"]. " - Name: " . $users["full_name"]. " " . $users["email"]. " " . $users["user_name"]. "<br>";
+    foreach($result as $user) {
+        echo "id: " . $user["id"] . "<br>";
     }
   } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
