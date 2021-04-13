@@ -1,5 +1,7 @@
 <?php
 
+use PDO;
+
 $db_name = "registro";
 $db_user = "user1";
 $db_pass = "user1";
@@ -39,15 +41,31 @@ try  {
 // $stmt->execute();
 
 
+// $sql = "SELECT id, full_name, email, user_name FROM users;";
+// $result = $db->prepare($sql);
 
-$sql = "SELECT id, full_name, email, user_name FROM users;";
-$result = $db->prepare($sql);
+// if ($result->num_rows > 0) {
+//   // output data of each row
+//   while($row = $result->fetch()) {
+//     echo "id: " . $row["id"]. " - Name: " . $row["full_name"]. " " . $row["email"]. " " . $row["user_name"]. "<br>";
+//   }
+// } else {
+//   echo "0 results";
+// }
 
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch()) {
-    echo "id: " . $row["id"]. " - Name: " . $row["full_name"]. " " . $row["email"]. " " . $row["user_name"]. "<br>";
+
+try {
+
+    $sql = "SELECT id, full_name, email, user_name FROM users;";
+    $result = $db->prepare($sql);
+    $stmt->execute();
+  
+    // set the resulting array to associative
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($result as $users) {
+        echo "id: " . $users["id"]. " - Name: " . $users["full_name"]. " " . $users["email"]. " " . $users["user_name"]. "<br>";
+    }
+  } catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
   }
-} else {
-  echo "0 results";
-}
