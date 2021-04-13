@@ -64,7 +64,7 @@ try {
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach($users as $user) {
-        echo "full_name: " . $user["full_name"] . "<full_name>";
+        echo "full_name: " . $user["full_name"] . "</br>";
     }
   } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
