@@ -33,7 +33,21 @@ try  {
 // $stmt->execute();
 
 
-$id=3;
-$stmt = $db->prepare("DELETE FROM users where id=:id");
-$stmt->bindParam(':id',$id);
-$stmt->execute();
+// $id=3;
+// $stmt = $db->prepare("DELETE FROM users where id=:id");
+// $stmt->bindParam(':id',$id);
+// $stmt->execute();
+
+
+
+$sql = "SELECT id, full_name, email, user_name FROM users";
+$result = $db->prepare($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch()) {
+    echo "id: " . $row["id"]. " - Name: " . $row["full_name"]. " " . $row["email"]. " " . $row["user_name"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
