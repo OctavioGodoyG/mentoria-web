@@ -40,7 +40,7 @@ try  {
 
 
 
-$sql = "SELECT id, full_name, email, user_name FROM users";
+$sql = "SELECT id, full_name, email, user_name FROM users;";
 $result = $db->prepare($sql);
 
 if ($result->num_rows > 0) {
