@@ -57,7 +57,7 @@ try  {
 try {
 
     $sql = "SELECT id, full_name, email, user_name FROM users;";
-    $result = $db->prepare($sql);
+    // $result = $db->prepare($sql);
     $stmt->execute();
   
     // set the resulting array to associative
