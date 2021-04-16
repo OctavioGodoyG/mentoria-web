@@ -1,8 +1,7 @@
 <?php
 
-
-function connectDB(){
-    
+function connectDB()
+{
     $db_name = "registro";
     $db_user = "user1";
     $db_pass = "user1";
