@@ -1,7 +1,11 @@
+<?php
+	echo "Hola Mundo";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V13</title>
+	<title>Registro Mentoria Web</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
