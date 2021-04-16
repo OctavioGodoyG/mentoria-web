@@ -1,12 +1,38 @@
 <?php
 	//echo "Hola Mundo";
 	require "util/db.php";
-	
-	if (isset(print_r($_POST))){
+
+	if (isset($_POST["sing-up-button"])){
 		// se envio form
-		//$db=connectDB();
-		print_r($_POST);
+		$db=connectDB();
+
+		//print_r($_POST);
+
+		$name = $_POST["name"];
+		$email= $_POST["email"];
+		$username= $_POST["username"];
+		$pass= $_POST["pass"];
+		$repeatPass= $_POST["repeat-pass"];
+		$rememberMe= $_POST["remember-me"];
 		
+		//preparar consulta
+		$sql = "INSERT INTO users
+				(full_name, email, user_name, password)
+				VALUES
+				(:full_name, :email, :user_name, :password);";
+
+		 $stmt = $db->prepare($sql);
+
+		$stmt->bindParam(':full_name',$name);
+		$stmt->bindParam(':email',$email);
+		$stmt->bindParam(':user_name',$username);
+		$stmt->bindParam(':password',password_hash($pass, PASSWORD_DEFAULT));
+
+		$stmt->execute();
+		echo "Registro realizado";
+
+
+
 	}else{
 		echo "No se ha enviado pagina por boton";
 	}
