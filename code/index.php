@@ -2,7 +2,6 @@
 	//echo "Hola Mundo";
 	require "util/db.php";
 	$db=connectDB();
-	echo 
 ?>
 
 <!DOCTYPE html>
