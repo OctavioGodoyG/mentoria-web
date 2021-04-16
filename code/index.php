@@ -1,8 +1,16 @@
 <?php
 	//echo "Hola Mundo";
 	require "util/db.php";
-	//$db=connectDB();
-	print_r($_POST);
+	
+	if (isset(print_r($_POST))){
+		// se envio form
+		//$db=connectDB();
+		print_r($_POST);
+		
+	}else{
+		echo "No se ha enviado pagina por boton";
+	}
+
 ?>
 
 <!DOCTYPE html>
