@@ -7,3 +7,5 @@ print_r($_POST);
 echo "<br>";
 
 print_r($_GET);
+
+print_r($_SERVER);
