@@ -1,35 +1,36 @@
 <?php
-$valido=null;
+//echo "Hola Mundo";
+require "util/db.php";
 
-if (isset($_POST["sing-in-button"])) {
-
+if (isset($_POST["sing-up-button"])) {
 	// se envio form
-    $db_name = "registro";
-    $db_user = "user1";
-    $db_pass = "user1";
+	$db = connectDB();
 
-    $dsn = "mysql:host=localhost;dbname=$db_name";
-    $db = new mysqli($dsn, $db_user, $db_pass);
-	$db->set_charset("utf8mb4");
+	//print_r($_POST);
 
+	$name = $_POST["name"];
+	$email = $_POST["email"];
 	$username = $_POST["username"];
 	$pass = $_POST["pass"];
-
+	$repeatPass = $_POST["repeat-pass"];
+	$rememberMe = $_POST["remember-me"];
 
 	//preparar consulta
-	$sql = "SELECT  * FROM users WHERE username='$username'";
+	$sql = "INSERT INTO users
+				(full_name, email, user_name, password)
+				VALUES
+				(:full_name, :email, :user_name, :password);";
 
-	$result = $db->query($sql);
+	$stmt = $db->prepare($sql);
 
-	if ($result){
-		echo "Result Existe!";
-	}else{
-		echo "No Existe!";
-		$valido=false;
-	}
+	$pass = password_hash($pass, PASSWORD_DEFAULT);
+	$stmt->bindParam(':full_name', $name);
+	$stmt->bindParam(':email', $email);
+	$stmt->bindParam(':user_name', $username);
+	$stmt->bindParam(':password', $pass);
+
 	$stmt->execute();
-	echo "Conección realizada!";
-
+	echo "Registro realizado";
 } else {
 	echo "No se ha enviado pagina por boton";
 }
@@ -82,10 +83,10 @@ $valido = 1;
 					<span class="login100-form-title p-b-59">
 						Sign In
 					</span>
-					<?php if($valido===false): ?>
-						<p class="">Texto controlado php</p>
+					<?php if($valido==1): ?>
+						<p>Texto controlado php</p>
 					<?php endif; ?>
-
+					
 					<div class="wrap-input100 validate-input" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Username...">
@@ -95,6 +96,12 @@ $valido = 1;
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">Password</span>
 						<input class="input100" type="text" name="pass" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+						<span class="label-input100">Repeat Password</span>
+						<input class="input100" type="text" name="repeat-pass" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -115,14 +122,8 @@ $valido = 1;
 					</div>
 
 					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" name="sing-in-button">
-								Sign In
-							</button>
-						</div>
 
-						<a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+						<a href="index.php" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
 							Sign in
 							<i class="fa fa-long-arrow-right m-l-5"></i>
 						</a>
