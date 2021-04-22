@@ -24,15 +24,18 @@ if (isset($_POST["sing-in-button"])) {
 	if ($result) {
 		$row = $result->fetch_assoc();
 
-		// if (password_hash()){
+		if (password_hash($pass, $row["password"])){
+			header("Location: main.php");
+			echo "Result Existe!";
 
-		// }
-		echo "Result Existe!";
+		}else{
+			$valido= true;
+		}
 	} else {
 		echo "No Existe!";
 		$valido = false;
 	}
-	$stmt->execute();
+	//$stmt->execute();
 	echo "Conección realizada!";
 } else {
 	echo "No se ha enviado pagina por boton";
