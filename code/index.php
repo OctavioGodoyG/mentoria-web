@@ -17,7 +17,7 @@ if (isset($_POST["sing-in-button"])) {
 
 
 	//preparar consulta
-	$sql = "SELECT  * FROM users WHERE username='$username'";
+	$sql = "SELECT  * FROM users WHERE user_name='$username'";
 
 	$result = $db->query($sql);
 
@@ -122,7 +122,7 @@ $valido = 1;
 							</button>
 						</div>
 
-						<a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+						<a href="index.php" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
 							Sign in
 							<i class="fa fa-long-arrow-right m-l-5"></i>
 						</a>
