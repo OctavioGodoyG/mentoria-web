@@ -1,15 +1,15 @@
 <?php
-$valido=null;
+$valido = null;
 
 if (isset($_POST["sing-in-button"])) {
 
 	// se envio form
-    $db_name = "registro";
-    $db_user = "user1";
-    $db_pass = "user1";
+	$db_name = "registro";
+	$db_user = "user1";
+	$db_pass = "user1";
 
-    $dsn = "mysql:host=localhost;dbname=$db_name";
-    $db = new mysqli($dsn, $db_user, $db_pass);
+	$dsn = "mysql:host=localhost;dbname=$db_name";
+	$db = new mysqli($dsn, $db_user, $db_pass);
 	$db->set_charset("utf8mb4");
 
 	$username = $_POST["username"];
@@ -21,15 +21,19 @@ if (isset($_POST["sing-in-button"])) {
 
 	$result = $db->query($sql);
 
-	if ($result){
+	if ($result) {
+		$row = $result->fetch_assoc();
+
+		// if (password_hash()){
+
+		// }
 		echo "Result Existe!";
-	}else{
+	} else {
 		echo "No Existe!";
-		$valido=false;
+		$valido = false;
 	}
 	$stmt->execute();
 	echo "Conección realizada!";
-
 } else {
 	echo "No se ha enviado pagina por boton";
 }
@@ -78,11 +82,11 @@ $valido = 1;
 			<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-				<form class="login100-form validate-form" method="GET" action="process.php">
+				<form class="login100-form validate-form" method="POST" action="index.php">
 					<span class="login100-form-title p-b-59">
 						Sign In
 					</span>
-					<?php if($valido===false): ?>
+					<?php if ($valido === false) : ?>
 						<p class="">Texto controlado php</p>
 					<?php endif; ?>
 
