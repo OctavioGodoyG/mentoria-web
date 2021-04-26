@@ -50,6 +50,7 @@
 
             <?php
                 $data = unserialize($_GET['data']);
+                print_r($data);
                 echo 'ID: ' . $data['id'];
             ?>
 

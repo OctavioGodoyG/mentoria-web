@@ -83,9 +83,10 @@
                         echo '<td >' . $data['email'] . '</td>';
                         echo '<td >' . $data['user_name'] . '</td>';
                         $data = serialize($data);
-                        $data = urlencode($data);
+                        //$data = urlencode($data);
+                        print_r($miArray);
                         echo '<td>
-                                <a href="view.php?data="' . $data . '"><button class="btn btn-primary btn-sm">View</button></a>
+                                <a href="view.php?data=' . $data . '"><button class="btn btn-primary btn-sm">View</button></a>
                                 <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                                 <button class="btn btn-sm">Delete</button>
                             </td>';
