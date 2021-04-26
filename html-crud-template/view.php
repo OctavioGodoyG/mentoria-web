@@ -48,7 +48,7 @@
         <div class="container">
             <h1>Vista Detalle Usuario</h1>
             <?php
-                echo $data['id'];
+                echo 'ID: ' . $data['id'];
             ?>
             <p>Name: Pisyek</p>
             <p>Email: pisyek@gmail.com</p>
