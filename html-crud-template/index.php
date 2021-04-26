@@ -56,7 +56,7 @@
                         <th scope="col">Full Namme</th>
                         <th scope="col">Email</th>
                         <th scope="col">User Name</th>
-                        <th scope="col">Password</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
 
@@ -72,10 +72,10 @@
                         parent::__construct($it, self::LEAVES_ONLY);
                     }
 
-                    function current()
-                    {
-                        return "<td style='width: 150px; border: 1px solid black;'>" . parent::current() . "</td>";
-                    }
+                    // function current()
+                    // {
+                    //     return "<td style='width: 150px; border: 1px solid black;'>" . parent::current() . "</td>";
+                    // }
 
                     function beginChildren()
                     {
@@ -89,11 +89,7 @@
                 }
 
                 require "util/db.php";
-
-                // se envio form
                 $db = connectDB();
-
-
 
                 try {
 
@@ -104,10 +100,26 @@
 
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    foreach ($result = $stmt->fetchAll() as $data) {
+                        echo '<tr>';
 
-                    foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k => $v) {
-                        echo $v;
+                        echo '<td >' . $data['id'] . '</td>';
+                        echo '<td >' . $data['full_name'] . '</td>';
+                        echo '<td >' . $data['email'] . '</td>';
+                        echo '<td >' . $data['user_name'] . '</td>';
+
+                        echo '<td>
+                                <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                                <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                                <button class="btn btn-sm">Delete</button>
+                            </td>';
+
+                        echo ' </tr>';
                     }
+
+                    // foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k => $v) {
+                    //     echo $v;
+                    // }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
                 }
