@@ -17,7 +17,7 @@ if (isset($_POST["sing-in-button"])) {
 
 
 	//preparar consulta
-	$sql = "SELECT  * FROM users WHERE user_name='$username'";
+	$sql = "SELECT  * FROM users";
 
 	$result = $db->query($sql);
 
