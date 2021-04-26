@@ -82,7 +82,7 @@
                         echo '<td >' . $data['full_name'] . '</td>';
                         echo '<td >' . $data['email'] . '</td>';
                         echo '<td >' . $data['user_name'] . '</td>';
-                        print_r($data);
+                        //print_r($data);
                         $data = serialize($data);
                         //$data = urlencode($data);
                         print_r($data);
