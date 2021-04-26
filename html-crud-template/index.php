@@ -84,7 +84,7 @@
                         echo '<td >' . $data['user_name'] . '</td>';
 
                         echo '<td>
-                                <a href="view.php?data="' . $data['id'] . '"><button class="btn btn-primary btn-sm">View</button></a>
+                                <a href="view.php?data="' . $data . '"><button class="btn btn-primary btn-sm">View</button></a>
                                 <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                                 <button class="btn btn-sm">Delete</button>
                             </td>';

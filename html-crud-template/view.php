@@ -47,9 +47,12 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1>Vista Detalle Usuario</h1>
+
             <?php
+                $data = $_GET["data"]; 
                 echo 'ID: ' . $data['id'];
             ?>
+
             <p>Name: Pisyek</p>
             <p>Email: pisyek@gmail.com</p>
         </div>
