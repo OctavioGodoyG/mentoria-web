@@ -27,7 +27,6 @@ if (isset($_POST["sing-in-button"])) {
 		if (password_hash($pass, $row["password"])){
 			header("Location: main.php");
 			echo "Result Existe!";
-
 		}else{
 			$valido= true;
 		}
@@ -35,8 +34,6 @@ if (isset($_POST["sing-in-button"])) {
 		echo "No Existe!";
 		$valido = false;
 	}
-	//$stmt->execute();
-	echo "Conección realizada!";
 } else {
 	echo "No se ha enviado pagina por boton";
 }
