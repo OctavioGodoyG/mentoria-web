@@ -1,3 +1,48 @@
+<?php
+$valido = null;
+
+if (isset($_POST["sing-in-button"])) {
+
+	// se envio form
+	$db_name = "registro";
+	$db_user = "user1";
+	$db_pass = "user1";
+
+	$dsn = "mysql:host=localhost;dbname=$db_name";
+	$db = new mysqli($dsn, $db_user, $db_pass);
+	$db->set_charset("utf8mb4");
+
+	$username = $_POST["username"];
+	$pass = $_POST["pass"];
+
+
+	//preparar consulta
+	$sql = "SELECT  * FROM users WHERE user_name='$username'";
+
+	$result = $db->query($sql);
+
+	if ($result) {
+		$row = $result->fetch_assoc();
+
+		if (password_hash($pass, $row["password"])){
+			header("Location: main.php");
+			echo "Result Existe!";
+		}else{
+			$valido= true;
+		}
+	} else {
+		echo "No Existe!";
+		$valido = false;
+	}
+} else {
+	echo "No se ha enviado pagina por boton";
+}
+
+$valido = 1;
+
+?>
+
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -10,7 +55,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 
-    <title>List of User</title>
+    <title>Lista de Usuarios</title>
    
   </head>
   <body class="d-flex flex-column h-100">
@@ -25,10 +70,10 @@
             <div class="collapse navbar-collapse" id="navbarsExample09">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="create.html">Create</a>
+                        <a class="nav-link" href="create.php">Create</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">FAQ</a>
@@ -50,20 +95,22 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Full Namme</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Password</th>
                     </tr>
                 </thead>
-                <tbody>
+
+                <!-- <tbody>
                     <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>
-                        <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.html"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                         <button class="btn btn-sm">Delete</button>
                     </td>
                     </tr>
@@ -72,8 +119,8 @@
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>
-                        <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.html"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                         <button class="btn btn-sm">Delete</button>
                     </td>
                     </tr>
@@ -82,12 +129,13 @@
                     <td>Larry</td>
                     <td>the Bird</td>
                     <td>
-                        <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.html"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                         <button class="btn btn-sm">Delete</button>
                     </td>
                     </tr>
-                </tbody>
+                </tbody> -->
+
             </table>
         </div>
     </main>
