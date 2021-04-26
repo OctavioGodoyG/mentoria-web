@@ -49,7 +49,7 @@
             <h1>Vista Detalle Usuario</h1>
 
             <?php
-                $data = $_GET["data"]; 
+                $data = unserialize($_GET['data']);
                 echo 'ID: ' . $data['id'];
             ?>
 
