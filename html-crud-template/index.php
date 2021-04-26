@@ -48,7 +48,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>List of User</h1>
+            <h1>Lista de Usuarios</h1>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -71,11 +71,6 @@
                     {
                         parent::__construct($it, self::LEAVES_ONLY);
                     }
-
-                    // function current()
-                    // {
-                    //     return "<td style='width: 150px; border: 1px solid black;'>" . parent::current() . "</td>";
-                    // }
 
                     function beginChildren()
                     {
@@ -117,50 +112,12 @@
                         echo ' </tr>';
                     }
 
-                    // foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k => $v) {
-                    //     echo $v;
-                    // }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
                 }
                 $conn = null;
                 echo "</table>";
                 ?>
-
-                <!-- <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-
-                    <td>
-                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                        <button class="btn btn-sm">Delete</button>
-                    </td>
-
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>
-                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                        <button class="btn btn-sm">Delete</button>
-                    </td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>
-                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                        <button class="btn btn-sm">Delete</button>
-                    </td>
-                    </tr>
-                </tbody> -->
 
             </table>
         </div>
