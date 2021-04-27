@@ -3,8 +3,8 @@
 function connectDB()
 {
     $db_name = "registro";
-    $db_user = "user1";
-    $db_pass = "user1";
+    $db_user = "local";
+    $db_pass = "local";
 
     try  { 
         $dsn = "mysql:host=localhost;dbname=$db_name";

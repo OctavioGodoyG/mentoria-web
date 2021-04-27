@@ -82,13 +82,10 @@
                         echo '<td >' . $data['full_name'] . '</td>';
                         echo '<td >' . $data['email'] . '</td>';
                         echo '<td >' . $data['user_name'] . '</td>';
-                        //print_r($data);
-                        $data = serialize($data);
-                        //$data = urlencode($data);
-                        print_r($data);
+
                         echo '<td>
-                                <a href="view.php?data=' . $data . '"><button class="btn btn-primary btn-sm">View</button></a>
-                                <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                                <a href="view.php?id=' . $data['id'] . '"><button class="btn btn-primary btn-sm">View</button></a>
+                                <a href="edit.php?id=' . $data['id'] . '"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                                 <button class="btn btn-sm">Delete</button>
                             </td>';
 
