@@ -1,3 +1,30 @@
+<?php
+    require "util/db.php";
+    $db = connectDB();
+    $sql = "SELECT * FROM users";
+    //statement
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    if (isset($_POST["btnEliminar"])) {
+
+        $id = $_POST["id"];
+
+        echo "paso por aqui";
+        $sql = "DELETE FROM users where id= :id";
+    
+        //statement
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $message = "Se procedio a Eliminar";
+    }
+
+
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -61,43 +88,25 @@
                 </thead>
 
 
-                <?php
+                <tbody>
+                    <?php foreach ($users as $user) : ?>
+                        <tr>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['full_name'] ?></td>
+                            <td><?= $user['user_name'] ?></td>
+                            <td><?= $user['email'] ?? 'Sin correo' ?></td>
+                            <td>
 
-                require "util/db.php";
-                $db = connectDB();
-
-                try {
-
-                    //preparar consulta
-                    $sql = "SELECT * FROM  users ";
-                    $stmt = $db->prepare($sql);
-                    $stmt->execute();
-
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach ($result = $stmt->fetchAll() as $data) {
-                        echo '<tr>';
-
-                        echo '<td >' . $data['id'] . '</td>';
-                        echo '<td >' . $data['full_name'] . '</td>';
-                        echo '<td >' . $data['email'] . '</td>';
-                        echo '<td >' . $data['user_name'] . '</td>';
-
-                        echo '<td>
-                                <a href="view.php?id=' . $data['id'] . '"><button class="btn btn-primary btn-sm">View</button></a>
-                                <a href="edit.php?id=' . $data['id'] . '"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                                <button class="btn btn-sm">Delete</button>
-                            </td>';
-
-                        echo ' </tr>';
-                    }
-
-                } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-                echo "</table>";
-                ?>
+                                <a href="view.php?id=<?= $user['id'] ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                                <a href="edit.php?id=<?= $user['id'] ?>"><button class="btn btn-outline-primary">Edit</button></a>
+                                <form method="POST" action="index.php">
+                                <input type="hidden" name="id" value=" <?= $user['id'];?> ">
+                                <button class="btn btn-sm" name="btnEliminar">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
 
             </table>
         </div>
