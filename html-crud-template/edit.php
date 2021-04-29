@@ -1,5 +1,6 @@
 <?php
 require "util/db.php";
+$valido = 0;
 
 if (isset($_GET['id'])) {
     $idregistro = $_GET['id'];
@@ -43,7 +44,8 @@ if (isset($_POST['send-button'])) {
 
     $stmt->execute();
 
-    echo "Registro actualizado con éxito";
+    $message = "Registro actualizado con éxito";
+    $valido = 1;
 }
 ?>
 
@@ -98,6 +100,11 @@ if (isset($_POST['send-button'])) {
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1>Editar Usuario</h1>
+
+            <?php if ($valido == 1) : ?>
+                <font color="red"><?= $message; ?></font>
+            <?php endif; ?>
+
             <form action="edit.php" method="POST">
 
                 <div class="form-group">
@@ -120,7 +127,7 @@ if (isset($_POST['send-button'])) {
                 </div>
                 <div class="form-group">
                     <label for="name">Password</label>
-                    <input type="text" class="form-control" name="password" id="pass" value=<?= $users['password'] ?? 'ingrese password' ?> placeholder="Enter pass">
+                    <input type="password" class="form-control" name="password" id="pass" value=<?= $users['password'] ?? 'ingrese password' ?> placeholder="Enter pass">
                     <!-- <small class="form-text text-muted">Help message here.</small> -->
                 </div>
                 <button type="submit" class="btn btn-primary" name="send-button">Submit</button>
