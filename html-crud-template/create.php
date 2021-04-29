@@ -24,8 +24,18 @@ if (isset($_POST['send-button'])) {
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':user_name', $username);
     $stmt->bindParam(':password', $password);
-
     $stmt->execute();
+
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+    print_r($_FILES["imagen"]);
+
+    if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
+        echo "The file " . htmlspecialchars(basename($_FILES["imagen"]["name"])) . " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+
     $valido = 1;
     $message = "Registro creado con éxito";
 }
@@ -86,7 +96,7 @@ if (isset($_POST['send-button'])) {
             <?php if ($valido == 1) : ?>
                 <font color="red"><?= $message; ?></font>
             <?php endif; ?>
-            <form action="create.php" method="POST">
+            <form action="create.php" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -104,6 +114,11 @@ if (isset($_POST['send-button'])) {
                 <div class="form-group">
                     <label for="name">Password</label>
                     <input type="password" class="form-control" name="password" id="pass" placeholder="Enter pass">
+                </div>
+
+                <div class="form-group">
+                    <label for="upload">Upload</label>
+                    <input type="file" class="form-control" name="upload" id="upload">
                 </div>
 
                 <button type="submit" class="btn btn-primary" name="send-button">Submit</button>
