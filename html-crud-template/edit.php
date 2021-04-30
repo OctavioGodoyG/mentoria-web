@@ -2,7 +2,7 @@
 require "util/db.php";
 
 session_start();
-if(!isset($_SESSION['nombre'])){
+if (!isset($_SESSION['nombre'])) {
     header("location:index.php");
 }
 
@@ -84,7 +84,7 @@ if (isset($_POST['send-button'])) {
 
     <title>List of User</title>
 
-</head> 
+</head>
 
 <body class="d-flex flex-column h-100">
 
@@ -128,18 +128,17 @@ if (isset($_POST['send-button'])) {
             <form action="edit.php" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
-                   
+                    <?php
+                    if (isset($users['user_name'])) {
+                        $rutaImagen = "uploads/" . $users['user_name'] . ".jpg" ?? '0' . ".jpg";
+                    }
+                    ?>
                     <img src="<?= $rutaImagen; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="upload">Upload</label>
                     <input type="file" class="form-control" name="imagen" id="upload">
-                    <?php
-                    //$rutaImagen = "uploads/". $users['user_name'] .".jpg" ?? '0'.".jpg";
-                    //$rutaImagen = $_FILES["imagen"]["name"];
-                    //echo $rutaImagen;
-                    ?>
                 </div>
 
                 <div class="form-group">
