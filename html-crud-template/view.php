@@ -80,21 +80,21 @@ $valido = 0;
 
                 <div class="form-group">
                     <label for="name">ID</label>
-                    <input type="text" class="form-control" name="id" id="id" value=<?= $users['id'] ?? '0' ?> disabled>
+                    <input type="text" class="form-control" name="id" id="id" value="<?= $users['id'] ?? '0' ?>" disabled>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="full_name" id="full_name" value=<?= $users['full_name'] ?? 'Sin nombre' ?> placeholder="Enter name" disabled>
+                    <input type="text" class="form-control" name="full_name" id="full_name" value="<?= $users['full_name'] ?? 'Sin nombre' ?>" placeholder="Enter name" disabled>
                 </div>
 
                 <div class="form-group">
                     <label for="name">User Name</label>
-                    <input type="text" class="form-control" name="user_name" id="User-name" value=<?= $users['user_name'] ?? 'ingrese usuario' ?> placeholder="Enter User" disabled>
+                    <input type="text" class="form-control" name="user_name" id="User-name" value="<?= $users['user_name'] ?? 'ingrese usuario' ?> "placeholder="Enter User" disabled>
                 </div>
                 <div class="form-group">
                     <label for="name">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" value=<?= $users['email'] ?? 'Sin email' ?> placeholder="Enter mail" disabled>
+                    <input type="text" class="form-control" name="email" id="email" value="<?= $users['email'] ?? 'Sin email' ?>" placeholder="Enter mail" disabled>
                 </div>
                 <!-- <div class="form-group">
                     <label for="name">Password</label>

@@ -127,20 +127,20 @@ if (isset($_POST['send-button'])) {
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="full_name" id="full_name" value=<?= $users['full_name'] ?? 'Sin nombre' ?> placeholder="Enter name">
+                    <input type="text" class="form-control" name="full_name" id="full_name" value="<?= $users['full_name'] ?? 'Sin nombre' ?>" placeholder="Enter name">
                 </div>
 
                 <div class="form-group">
                     <label for="name">User Name</label>
-                    <input type="text" class="form-control" name="user_name" id="User-name" value=<?= $users['user_name'] ?? 'ingrese usuario' ?> placeholder="Enter User">
+                    <input type="text" class="form-control" name="user_name" id="User-name" value="<?= $users['user_name'] ?? 'ingrese usuario' ?>" placeholder="Enter User">
                 </div>
                 <div class="form-group">
                     <label for="name">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" value=<?= $users['email'] ?? 'Sin email' ?> placeholder="Enter mail">
+                    <input type="text" class="form-control" name="email" id="email" value="<?= $users['email'] ?? 'Sin email' ?>" placeholder="Enter mail">
                 </div>
                 <div class="form-group">
                     <label for="name">Password</label>
-                    <input type="password" class="form-control" name="password" id="pass" value=<?= $users['password'] ?? 'ingrese password' ?> placeholder="Enter pass">
+                    <input type="password" class="form-control" name="password" id="pass" value="<?= $users['password'] ?? 'ingrese password' ?>" placeholder="Enter pass">
                     <!-- <small class="form-text text-muted">Help message here.</small> -->
                 </div>
                 <button type="submit" class="btn btn-primary" name="send-button">Submit</button>
