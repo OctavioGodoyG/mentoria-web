@@ -34,20 +34,20 @@ if (isset($_POST['send-button'])) {
 
     $target_dir = "uploads/";
     $nameImage = $username . ".jpg";
-    $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
-    print_r($target_file);
+    //$target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+    //print_r($target_file);
     $target_file = $target_dir . $nameImage;
-    print_r($_FILES["imagen"]);
-    print_r($target_file);
+    //print_r($_FILES["imagen"]);
+    //print_r($target_file);
 
     if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
-        echo "The file " . htmlspecialchars(basename($_FILES["imagen"]["name"])) . " has been uploaded.";
+        $message =  "The file " . htmlspecialchars(basename($_FILES["imagen"]["name"])) . " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        $message =  "Sorry, there was an error uploading your file.";
     }
 
     $valido = 1;
-    $message = "Registro creado con éxito";
+    //$message = "Registro creado con éxito";
 }
 ?>
 
@@ -104,7 +104,7 @@ if (isset($_POST['send-button'])) {
         <div class="container">
             <h1>Create New User</h1>
             <?php if ($valido == 1) : ?>
-                <font color="red"><?= $message; ?></font>
+                <font color="green"><?= $message; ?></font>
             <?php endif; ?>
             <form action="create.php" method="POST" enctype="multipart/form-data">
 
