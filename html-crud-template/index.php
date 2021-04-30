@@ -1,139 +1,140 @@
 <?php
-require "util/db.php";
+// XSS
+// SQL Injection
+$valido = null;
 
-$valido = 0;
-$db = connectDB();
+if (isset($_POST['sign-in-button'])) {
+	$dbname = "registro";
+    $dbuser = "local";
+    $dbpassword = "local";
 
-$sql = "SELECT * FROM users";
-//statement
-$stmt = $db->prepare($sql);
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$db = new mysqli('localhost', $dbuser, $dbpassword, $dbname);
+	$db->set_charset('utf8mb4');
 
-if (isset($_POST["btnEliminar"])) {
+	$username = $_POST['username'];
+	$password = $_POST['pass'];
 
-    $id = $_POST["id"];
+	$sql = "SELECT * FROM users WHERE user_name='$username'";
 
-    //echo "paso por aqui";
-    $sql = "DELETE FROM users where id= :id";
+	// result es un objeto
+	$result = $db->query($sql);
 
-    //statement
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-
-    $message = "Se procedio a Eliminar";
-    $valido = 1;
-    header("location:index.php");
+	if ($result) {
+		if ($row = $result->fetch_assoc()) {
+			if (password_verify($password, $row['password'])) {
+				// activamos inicio de sesiones
+				session_start();
+				$_SESSION['nombre'] = $row['full_name'];
+				header("Location: main.php");
+			} else {
+				$valido = false;
+			}
+		} else {
+			$valido = false;
+		}
+	} else {
+		$valido = false;
+	}
 }
+
 ?>
-
-<!doctype html>
-<html lang="en" class="h-100">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Registro Mentoría WEB</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-    <title>Lista de Usuarios</title>
-
+	<style>
+		.msg-form {
+			margin: 1em;
+			color: red;
+		}
+	</style>
 </head>
+<body style="background-color: #999999;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 
-<body class="d-flex flex-column h-100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form class="login100-form validate-form" method="POST" action="index.php">
+					<input type="hidden" name="super-secreto" value="valor super secreto">
+					<span class="login100-form-title p-b-59">
+						Sign In
+					</span>
 
-    <div class="container pt-4 pb-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-            <a class="navbar-brand" href="#">HTML CRUD Template</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+					<?php if ($valido === false): ?>
+						<p class="msg-form">Usuario o password incorrecto</p>
+					<?php endif; ?>
 
-            <div class="collapse navbar-collapse" id="navbarsExample09">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="create.php">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://pisyek.com/contact">Help</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-md-0">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                </form>
-            </div>
-        </nav>
-    </div>
+					<div class="wrap-input100 validate-input" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Username...">
+						<span class="focus-input100"></span>
+					</div>
 
-    <main role="main" class="flex-shrink-0">
-        <div class="container">
-            <h1>Lista de Usuarios</h1>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>
 
-            <?php if ($valido == 1) : ?>
-                <font color="red"><?= $message; ?></font>
-            <?php endif; ?>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" name="sign-in-button">
+								Sign In
+							</button>
 
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Full Namme</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-                <tbody>
-                    <?php foreach ($users as $user) : ?>
-                        <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['full_name'] ?></td>
-                            <td><?= $user['user_name'] ?></td>
-                            <td><?= $user['email'] ?? 'Sin correo' ?></td>
-                            <td>
-                                <a href="view.php?id=<?= $user['id'] ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                                <a href="edit.php?id=<?= $user['id'] ?>"><button class="btn btn-outline-primary">Edit</button></a>
-                            <td>
-                                <form method="POST" action="index.php">
-                                    <input type="hidden" name="id" value=" <?= $user['id']; ?> ">
-                                    <!-- <button class="btn btn-sm" name="btnEliminar">Delete</button> -->
-                                    <button class="btn btn-danger" onclick="return confirm('Esta seguro que desea borrar el archivo?');" name="btnEliminar">Delete</button>
-                                </form>
-                            </td>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-
-            </table>
-        </div>
-    </main>
-
-    <footer class="footer mt-auto py-3">
-        <div class="container pb-5">
-            <hr>
-            <span class="text-muted">
-                Copyright &copy; 2019 | <a href="https://pisyek.com">Pisyek.com</a>
-            </span>
-        </div>
-    </footer>
-
-
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
 </body>
-
 </html>

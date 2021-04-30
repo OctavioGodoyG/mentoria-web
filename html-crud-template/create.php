@@ -1,5 +1,11 @@
 <?php
 require "util/db.php";
+
+session_start();
+if(!isset($_SESSION['nombre'])){
+    header("location:index.php");
+}
+
 $valido = 0;
 if (isset($_POST['send-button'])) {
 
@@ -75,7 +81,7 @@ if (isset($_POST['send-button'])) {
             <div class="collapse navbar-collapse" id="navbarsExample09">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="main.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="create.php">Create</a>

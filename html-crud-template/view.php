@@ -1,5 +1,11 @@
 <?php
 require "util/db.php";
+
+session_start();
+if(!isset($_SESSION['nombre'])){
+    header("location:index.php");
+}
+
 $valido = 0;
 
     if (isset($_GET['id'])) {
@@ -46,10 +52,10 @@ $valido = 0;
             <div class="collapse navbar-collapse" id="navbarsExample09">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="main.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="create.html">Create</a>
+                        <a class="nav-link" href="create.php">Create</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">FAQ</a>
