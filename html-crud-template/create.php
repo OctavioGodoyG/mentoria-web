@@ -27,8 +27,12 @@ if (isset($_POST['send-button'])) {
     $stmt->execute();
 
     $target_dir = "uploads/";
+    $nameImage = $username . ".jpg";
     $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+    print_r($target_file);
+    $target_file = $target_dir . $nameImage;
     print_r($_FILES["imagen"]);
+    print_r($target_file);
 
     if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
         echo "The file " . htmlspecialchars(basename($_FILES["imagen"]["name"])) . " has been uploaded.";
@@ -99,6 +103,20 @@ if (isset($_POST['send-button'])) {
             <form action="create.php" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
+                    <!-- <?php
+                    $rutaImagen = "uploads/" . $users['id'] ?? '0' . ".jpg";
+                    ?>
+                    <img src="<?= $rutaImagen; ?>"> -->
+                </div>
+
+                <div class="form-group">
+                    <!-- <img src="<?= $rutaImagen; ?>"> -->
+                    <label for="upload">Upload</label>
+                    <input type="file" class="form-control" name="imagen" id="upload">
+                </div>
+
+
+                <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter name">
                 </div>
@@ -114,11 +132,6 @@ if (isset($_POST['send-button'])) {
                 <div class="form-group">
                     <label for="name">Password</label>
                     <input type="password" class="form-control" name="password" id="pass" placeholder="Enter pass">
-                </div>
-
-                <div class="form-group">
-                    <label for="upload">Upload</label>
-                    <input type="file" class="form-control" name="upload" id="upload">
                 </div>
 
                 <button type="submit" class="btn btn-primary" name="send-button">Submit</button>

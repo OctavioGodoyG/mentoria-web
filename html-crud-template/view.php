@@ -1,3 +1,22 @@
+<?php
+require "util/db.php";
+$valido = 0;
+
+    if (isset($_GET['id'])) {
+        $idregistro = $_GET['id'];
+        $db = connectDB();
+
+        $sql = "SELECT id,full_name,user_name,email,password
+            FROM users where id=$idregistro";
+
+        //statement
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetch();
+    }
+
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -50,50 +69,39 @@
         <div class="container">
             <h1>Vista Detalle Usuario</h1>
 
-            <?php
+            <form action="edit.php" method="POST">
 
-            require "util/db.php";
-            $db = connectDB();
+                <div class="form-group">
+                    <?php
+                    $rutaImagen = "uploads/" . $users['user_name'] . ".jpg" ?? '0' . ".jpg";
+                    ?>
+                    <img src="<?= $rutaImagen; ?>">
+                </div>
 
-            try {
+                <div class="form-group">
+                    <label for="name">ID</label>
+                    <input type="text" class="form-control" name="id" id="id" value=<?= $users['id'] ?? '0' ?> disabled>
+                </div>
 
-                if (isset($_GET['id'])) {
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="full_name" id="full_name" value=<?= $users['full_name'] ?? 'Sin nombre' ?> placeholder="Enter name" disabled>
+                </div>
 
-                    $id = $_GET['id'];
-
-                    //preparar consulta
-                    $sql = "SELECT * FROM  users WHERE id=".$id;
-                    $stmt = $db->prepare($sql);
-                    $stmt->execute();
-
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach ($result = $stmt->fetchAll() as $data) {
-                        echo  '<div class="form-group">';
-                        echo '<label for="id">Id: </label>'.$data['id'];
-                        echo '</div>';
-
-                        echo  '<div class="form-group">';
-                        echo '<label for="full_name">Full name: </label>'.$data['full_name'];
-                        echo '</div>';
-
-                        echo  '<div class="form-group">';
-                        echo '<label for="email">Email: </label>'.$data['email'];
-                        echo '</div>';
-
-                        echo  '<div class="form-group">';
-                        echo '<label for="user_name">User Name: </label>'.$data['user_name'];
-                        echo '</div>';
-
-                        //<input type="text" class="form-control" id="name" value="Nama saya Pisyek" placeholder="Enter name">
-                    }
-                }
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            $conn = null;
-            echo "</table>";
-            ?>
+                <div class="form-group">
+                    <label for="name">User Name</label>
+                    <input type="text" class="form-control" name="user_name" id="User-name" value=<?= $users['user_name'] ?? 'ingrese usuario' ?> placeholder="Enter User" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" value=<?= $users['email'] ?? 'Sin email' ?> placeholder="Enter mail" disabled>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="name">Password</label>
+                    <input type="password" class="form-control" name="password" id="pass" value=<?= $users['password'] ?? 'ingrese password' ?> placeholder="Enter pass" disabled>
+                    <!-- <small class="form-text text-muted">Help message here.</small> -->
+                </div> -->
+            </form>
 
         </div>
     </main>

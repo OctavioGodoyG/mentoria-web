@@ -64,7 +64,7 @@ if (isset($_POST['send-button'])) {
 
     <title>List of User</title>
 
-</head>
+</head> 
 
 <body class="d-flex flex-column h-100">
 
@@ -106,6 +106,19 @@ if (isset($_POST['send-button'])) {
             <?php endif; ?>
 
             <form action="edit.php" method="POST">
+
+                <div class="form-group">
+                    <?php
+                    $rutaImagen = "uploads/". $users['user_name'] .".jpg" ?? '0'.".jpg";
+                    //echo $rutaImagen;
+                    ?>
+                    <img src="<?= $rutaImagen; ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="upload">Upload</label>
+                    <input type="file" class="form-control" name="imagen" id="upload">
+                </div>
 
                 <div class="form-group">
                     <label for="name">ID</label>

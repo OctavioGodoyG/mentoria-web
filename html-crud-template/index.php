@@ -89,8 +89,8 @@ if (isset($_POST["btnEliminar"])) {
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Full Namme</th>
-                        <th scope="col">Email</th>
                         <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
