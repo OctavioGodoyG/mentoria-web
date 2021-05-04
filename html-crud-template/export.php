@@ -2,10 +2,13 @@
 require 'vendor/autoload.php';
 require "util/db.php";
 
-$db = connectDB();
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+$db = connectDB();
+
+header('Content-type: application/vnd.ms-excel');
+header('Content-Disposition: attachment; filename="usuarios.xlsx"');
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
@@ -24,6 +27,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $sheet->fromArray($users, null, 'A2');
 
 $writer = new Xlsx($spreadsheet);
-$writer->save('usuarios.xlsx');
+$writer->save('php://output');
+//$writer->save('usuarios.xlsx');
 
 header("location:main.php");
