@@ -92,6 +92,8 @@ if (isset($_POST["btnEliminar"])) {
                 <font color="red"><?= $message; ?></font>
             <?php endif; ?>
 
+            <a href="./export.php"><button class="btn btn-success">Exportar a Excel</button></a><br><br>
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
