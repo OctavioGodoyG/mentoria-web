@@ -73,11 +73,13 @@ if (isset($_POST["btnEliminar"])) {
                     <li class="nav-item">
                         <a class="nav-link" href="https://pisyek.com/contact">Help</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
                 </ul>
 
                 <form class="form-inline my-2 my-md-0">
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    <a href="logout.php">Logout</a>
                 </form>
 
             </div>

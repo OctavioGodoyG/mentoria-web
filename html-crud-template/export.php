@@ -13,7 +13,7 @@ $sheet->setCellValue('A1', 'Id');
 $sheet->setCellValue('B1', 'Full Name');
 $sheet->setCellValue('C1', 'user Name');
 $sheet->setCellValue('D1', 'Email');
-$sheet->setCellValue('F1', 'Password');
+$sheet->setCellValue('E1', 'Password');
 
 $sql = "SELECT * FROM users";
 $stmt = $db->prepare($sql);
@@ -25,3 +25,5 @@ $sheet->fromArray($users, null, 'A2');
 
 $writer = new Xlsx($spreadsheet);
 $writer->save('usuarios.xlsx');
+
+header("location:main.php");
