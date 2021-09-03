@@ -1,0 +1,12 @@
+{
+    "name": "octopus/phpmvc-framework",
+    "description": "Fremework de prueba",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
