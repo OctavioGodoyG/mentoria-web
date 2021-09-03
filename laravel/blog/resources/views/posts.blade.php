@@ -19,7 +19,8 @@
                      <!-- modifica $post->slug> -->
                      <a href="/post/<?= $post->id?>">
                         <!-- < ?= $post->title ?> -->
-                        {{$post->title}}
+                        {{$post->title}} 
+                        <!-- {!!$post->title!!} evita control de  script--> 
                     </a>  
                 </h1>    
                 <p><?= $post->resumen ?></p> 
