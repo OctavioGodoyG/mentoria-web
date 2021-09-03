@@ -29,12 +29,14 @@ Route::get('/', function () {
     // $posts = [];
   
     
-    $posts = cache()->rememberForever( 'posts.all', fn () => Post::all());
+    // $posts = cache()->rememberForever( 'posts.all', fn () => Post::all());
         // collect( File::files(resource_path("posts/")))
         //     ->map(fn ($file) => YamlFrontMatter::parseFile($file))
         //     ->map(fn ($document) => Post::createFromDocument($document))
     // );
     //ddd($posts);
+
+    $posts = Post::all();
 
     return view('posts', [
         //'posts' => Post::all()
@@ -42,8 +44,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/post/{post}', function ($slug) {
+// Route::get('/post/{post}', function ($slug) {
+//     return view('post', [
+//         'post' => Post::find($slug)
+//     ]);
+// })->where('post', '[A-Za-z\_-]+');
+
+Route::get('/post/{post}', function (Post $post) {
     return view('post', [
-        'post' => Post::find($slug)
+     'post' => $post, 
     ]);
-})->where('post', '[A-Za-z\_-]+');
+});
