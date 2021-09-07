@@ -15,6 +15,7 @@ class CreateTablePosts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
             $table->string('title');
             $table->text('resumen');
             $table->text('body');
@@ -30,6 +31,6 @@ class CreateTablePosts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_posts');
+        Schema::dropIfExists('posts');
     }
 }
