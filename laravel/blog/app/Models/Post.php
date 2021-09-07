@@ -12,4 +12,10 @@ class Post extends Model
     // public $fillable = ['title', 'resumen','body'];
 
     public $guarded = ['id'];
+
+    //Evita pasar parametro en slug web
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
