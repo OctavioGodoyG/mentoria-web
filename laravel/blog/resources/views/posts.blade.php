@@ -23,9 +23,17 @@
             <!-- {!!$post->title!!} evita control de  script-->
         </a>
     </h1>
+
+    <p> <a href="/category/<?= $post->slug ?>">
+            <!-- < ?= $post->title ?> -->
+            {{$post->title}}
+            <!-- {!!$post->title!!} evita control de  script-->
+        </a></p>
+
     <p> <a href="/category/{{$post->category->id}}">
             {{$post->category->name}}
         </a> </p>
+
     <p><?= $post->resumen ?></p>
 </article>
 
