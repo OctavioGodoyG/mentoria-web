@@ -10,7 +10,8 @@
 
     <p> <a href="/category/{{$post->category->slug}}">
             {{$post->category->name}}
-        </a> </p>
+        </a>
+    </p>
 
     <p><?= $post->resumen ?></p>
 </article>
