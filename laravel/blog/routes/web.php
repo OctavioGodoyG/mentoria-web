@@ -24,7 +24,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     DB::listen(function ($query) {
-        logger($query);
+        logger($query->sql, $query->bindings);
     });
 
     // $document = YamlFrontMatter::parseFile(
