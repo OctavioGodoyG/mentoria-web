@@ -7,11 +7,10 @@
 
 <article>
     <p> {{$post->body}} </p>
-    <p>{{$post->category->name}}</p>
 
-    <!-- <p> <a href="/category/{{$post->category->id}}">
+    <p> <a href="/category/{{$post->category->id}}">
             {{$post->category->name}}
-        </a> </p> -->
+        </a> </p>
 
     <p><?= $post->resumen ?></p>
 </article>
