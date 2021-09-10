@@ -25,9 +25,8 @@
     </h1>
 
     <p> <a href="/category/<?= $posts->slug ?>">
-            <!-- < ?= $post->title ?> -->
+            
             {{$posts->category->name}}
-            <!-- {!!$post->title!!} evita control de  script-->
         </a></p>
 
     <p><?= $post->resumen ?></p>
