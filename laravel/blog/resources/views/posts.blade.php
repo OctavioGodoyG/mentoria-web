@@ -26,7 +26,7 @@
 
     <p> <a href="/category/<?= $posts->slug ?>">
             
-            {{$posts->category->name}}
+            {{$post->category->name}}
         </a></p>
 
     <p><?= $post->resumen ?></p>
