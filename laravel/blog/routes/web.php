@@ -58,7 +58,7 @@ Route::get('/post/{post}', function (Post $post) {
     ]);
 });
 
-Route::get('/caregory/{category}', function (Category $category) {
+Route::get('/category/{category}', function (Category $category) {
     // Route::get('/post/{post:slug}', function (Post $post) {
     // return 'categorias';
     return view('posts', [
