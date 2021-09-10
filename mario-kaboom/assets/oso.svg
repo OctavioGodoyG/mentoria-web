@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1380"
+   height="1382"
+   viewBox="0 0 365.125 365.65417"
+   version="1.1"
+   id="svg4862"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="oso.svg"
+   inkscape:export-filename="/home/octopus/Proyectos/Segic/Web/mario-kaboom/assets/amador-bros-v4.png"
+   inkscape:export-xdpi="4.4991879"
+   inkscape:export-ydpi="4.4991879">
+  <defs
+     id="defs4856">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4822">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g4818"
+         id="use4824"
+         width="100%"
+         height="100%" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="25.630604"
+     inkscape:cy="599.92787"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4859">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(82.43665,-208.91997)">
+    <g
+       transform="matrix(0.26348776,0,0,0.26143967,-83.390201,211.06024)"
+       id="g4820"
+       clip-path="url(#clipPath4822)">
+      <g
+         inkscape:label="Clip"
+         id="g4818">
+        <image
+           style="paint-order:stroke fill markers"
+           width="1382"
+           height="1380"
+           preserveAspectRatio="none"
+           xlink:href="/media/multimedia/backup/home/octopus/none.png"
+           id="image3791"
+           x="-1.0000001"
+           y="-1382.6688"
+           transform="rotate(90)" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4703"
+           d="M 667.47279,18.355502 543.99033,38.379686 493.92987,76.759371 435.526,148.5127 l -28.3676,41.71705 -68.41596,75.09069 -75.09069,138.5006 -15.01813,91.77751 -5.00605,100.12092 15.01814,83.4341 26.69891,43.38573 -43.38573,15.01814 v 30.03627 l 30.03627,80.09674 48.39178,138.5006 20.02418,40.04835 13.34946,-1.6687 -1.66868,-5.006 28.36759,98.4522 73.42201,98.4523 70.08464,46.7231 73.42201,36.711 86.77146,40.0483 93.44619,16.6869 95.11488,-10.0121 85.10278,-46.7231 76.75934,-61.7413 50.0605,-40.0483 43.3857,-61.7413 25.0303,-91.7775 -1.6687,-70.08462 28.3676,-6.67473 11.6807,-11.68077 -1.6686,-21.69287 -3.3374,-16.68682 8.3434,-38.37968 3.3374,-28.3676 3.3373,-31.70496 13.3495,-30.03627 15.0181,-10.01209 -5.006,-78.42806 -13.3495,-15.01813 -16.6868,-21.69287 -25.0302,-5.00605 V 525.63482 L 1146.3845,373.78476 1104.6675,285.34462 1007.8839,173.54293 939.46796,101.7896 886.07013,65.078597 820.99154,48.391778 c 0,0 -21.69287,-13.349456 -38.37969,-16.68682 C 765.92503,28.367594 667.47279,18.355502 667.47279,18.355502 Z"
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+    </g>
+  </g>
+</svg>

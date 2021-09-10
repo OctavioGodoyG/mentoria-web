@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -27,12 +28,12 @@ Route::get('/', function () {
     //ddd($document->matter('title'));
     // $files = File::files(resource_path("posts/"));
     // $posts = [];
-  
-    
+
+
     // $posts = cache()->rememberForever( 'posts.all', fn () => Post::all());
-        // collect( File::files(resource_path("posts/")))
-        //     ->map(fn ($file) => YamlFrontMatter::parseFile($file))
-        //     ->map(fn ($document) => Post::createFromDocument($document))
+    // collect( File::files(resource_path("posts/")))
+    //     ->map(fn ($file) => YamlFrontMatter::parseFile($file))
+    //     ->map(fn ($document) => Post::createFromDocument($document))
     // );
     //ddd($posts);
 
@@ -53,6 +54,14 @@ Route::get('/', function () {
 Route::get('/post/{post}', function (Post $post) {
     // Route::get('/post/{post:slug}', function (Post $post) {
     return view('post', [
-     'post' => $post, 
+        'post' => $post,
     ]);
+});
+
+Route::get('/caregory/{category}', function (Category $category) {
+    // Route::get('/post/{post:slug}', function (Post $post) {
+    return 'categorias';
+    // return view('categories', [
+    //     'post' => $category,
+    // ]);
 });
