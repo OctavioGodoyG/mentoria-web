@@ -22,33 +22,19 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    DB::listen(function ($query) {
-        logger($query->sql, $query->bindings);
-    });
-
-    // $document = YamlFrontMatter::parseFile(
-    //     resource_path('posts/my-first-post.html')
-    // );
-    //ddd($document->matter('title'));
-    // $files = File::files(resource_path("posts/"));
-    // $posts = [];
-
-
-    // $posts = cache()->rememberForever( 'posts.all', fn () => Post::all());
-    // collect( File::files(resource_path("posts/")))
-    //     ->map(fn ($file) => YamlFrontMatter::parseFile($file))
-    //     ->map(fn ($document) => Post::createFromDocument($document))
-    // );
-    //ddd($posts);
-
-    $posts = Post::all();
-
-    return view('posts', [
-        //'posts' => Post::all()
-        'posts' => $posts
-    ]);
-});
+// $document = YamlFrontMatter::parseFile(
+//     resource_path('posts/my-first-post.html')
+// );
+//ddd : Dump, Die, Debug
+//ddd($document->matter('title'));
+// $files = File::files(resource_path("posts/"));
+// $posts = [];
+// $posts = cache()->rememberForever( 'posts.all', fn () => Post::all());
+// collect( File::files(resource_path("posts/")))
+//     ->map(fn ($file) => YamlFrontMatter::parseFile($file))
+//     ->map(fn ($document) => Post::createFromDocument($document))
+// );
+//ddd($posts);
 
 // Route::get('/post/{post}', function ($slug) {
 //     return view('post', [
@@ -56,17 +42,18 @@ Route::get('/', function () {
 //     ]);
 // })->where('post', '[A-Za-z\_-]+');
 
-Route::get('/post/{post}', function (Post $post) {
-    // Route::get('/post/{post:slug}', function (Post $post) {
-    return view('post', [
-        'post' => $post,
+// Route::get('/post/{post:slug}', function (Post $post) {
+
+Route::get('/', function () {
+    DB::listen(function ($query) {
+        logger($query->sql, $query->bindings);
+    });
+
+    return view('posts', [
+        'posts' => Post::with('category')->get()
     ]);
 });
 
-Route::get('/category/{category:slug}', function (Category $category) {
-    // Route::get('/post/{post:slug}', function (Post $post) {
-    // return 'categorias';
-    return view('posts', [
-        'posts' => $category->posts,
-    ]);
-});
+Route::get('/post/{post}', fn (Post $post) => view('post', ['post' => $post,]));
+
+Route::get('/category/{category:slug}', fn(Category $category) => view('posts', ['posts' => $category->posts,]) );

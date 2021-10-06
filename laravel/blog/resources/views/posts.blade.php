@@ -16,7 +16,6 @@
 <!-- ?php foreach($posts as $post): ?> -->
 <article>
     <h1>
-        <!-- modifica $post->slug> -->
         <a href="/post/<?= $post->slug ?>">
             <!-- < ?= $post->title ?> -->
             {{$post->title}}
