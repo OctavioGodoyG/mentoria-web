@@ -40,7 +40,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 // Route::get('/post/{post}', function ($slug) {
 //     return view('post', [
 //         'post' => Post::find($slug)
-//     ]);
+//     ]); 
 // })->where('post', '[A-Za-z\_-]+');
 
 // Route::get('/post/{post:slug}', function (Post $post) {
