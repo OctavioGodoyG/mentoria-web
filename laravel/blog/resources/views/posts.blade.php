@@ -9,33 +9,32 @@
 @endsection
 
 @section("content")
-<!-- probando instruccion if -->
-@if(count($posts) > 0)
+    <!-- probando instruccion if -->
+    @if(count($posts) > 0)
+        @foreach($posts as $post)
+        <!-- ?php foreach($posts as $post): ?> -->
+        <article>
+            <h1>
+                <a href="/post/<?= $post->slug ?>">
+                    <!-- < ?= $post->title ?> -->
+                    {{$post->title}}
+                    <!-- {!!$post->title!!} evita control de  script-->
+                </a>
+            </h1>
 
-@foreach($posts as $post)
-<!-- ?php foreach($posts as $post): ?> -->
-<article>
-    <h1>
-        <a href="/post/<?= $post->slug ?>">
-            <!-- < ?= $post->title ?> -->
-            {{$post->title}}
-            <!-- {!!$post->title!!} evita control de  script-->
-        </a>
-    </h1>
+            <p> By <a href="#">{{$post->author->name}}</a> in
+                <a href="/category/{{$post->category->slug}}">
+                    {{$post->category->name}}
+                </a>
+            </p>
 
-    <p> By <a href="#">{{$post->author->name}}</a> in
-        <a href="/category/{{$post->category->slug}}">
-            {{$post->category->name}}
-        </a>
-    </p>
+            <p><?= $post->resumen ?></p>
+        </article>
 
-    <p><?= $post->resumen ?></p>
-</article>
-
-<!-- ?php endforeach; ?> -->
-@endforeach
-@else
-I don't have any posts!
-@endif
+        <!-- ?php endforeach; ?> -->
+        @endforeach
+    @else
+        I don't have any posts!
+    @endif
 
 @endsection

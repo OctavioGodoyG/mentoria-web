@@ -3,10 +3,7 @@
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,15 +37,48 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 // Route::get('/post/{post}', function ($slug) {
 //     return view('post', [
 //         'post' => Post::find($slug)
-//     ]); 
+//     ]);
 // })->where('post', '[A-Za-z\_-]+');
 
 // Route::get('/post/{post:slug}', function (Post $post) {
 
-Route::get('/', fn () => view('posts', ['posts' => Post::latest('published_at')->with(['category', 'author'])->get()]));
+Route::get('/', fn () =>
+view('posts', [
+    'posts' =>
+    Post::latest('published_at')->with(['category', 'author'])->get()
+]));
 
 Route::get('/post/{post}', fn (Post $post) => view('post', ['post' => $post,]));
 
-Route::get('/category/{category:slug}', fn (Category $category) => view('posts', ['posts' => $category->posts,]));
+Route::get(
+    '/category/{category:slug}',
+    function (Category $category) {
+        return view(
+            'posts',
+            [
+                'posts' => $category->posts->load(
+                    [
+                        'category', 'author'
+                    ]
+                )
+            ],
+        );
+    }
+);
 
-Route::get('/author/{author}', fn (User $author) => view('posts', ['posts' => $author->posts,]));
+Route::get(
+    '/author/{author}',
+    function (User $author) {
+        // dd($author->posts->load(['category', 'author']));
+        // dd(User::with(['category', 'author'])->get() );
+        return view(
+            [
+                'posts' => $author->posts->load(
+                    [
+                        'category', 'author'
+                    ]
+                )
+            ],
+        );
+    }
+);
