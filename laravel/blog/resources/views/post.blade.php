@@ -11,12 +11,12 @@
             <h2>{{$post->title}}</h2>
         </a>
     </p>
-    <p> By <a href="#">Octavio Godoy</a> in
+    <p> By <a href="#">{{$post->author->name}}</a> in
         <a href="/category/{{$post->category->slug}}">
             {{$post->category->name}}
         </a>
     </p>
-    
+
     <p> {{$post->resumen}}</p>
 
     <p> {{$post->body}} </p>

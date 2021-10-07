@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -44,16 +45,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 // Route::get('/post/{post:slug}', function (Post $post) {
 
-Route::get('/', function () {
-    DB::listen(function ($query) {
-        logger($query->sql, $query->bindings);
-    });
-
-    return view('posts', [
-        'posts' => Post::with('category')->get()
-    ]);
-});
+Route::get('/', fn () => view('posts', ['posts' => Post::latest('published_at')->with(['category', 'author'])->get()]));
 
 Route::get('/post/{post}', fn (Post $post) => view('post', ['post' => $post,]));
 
-Route::get('/category/{category:slug}', fn(Category $category) => view('posts', ['posts' => $category->posts,]) );
+Route::get('/category/{category:slug}', fn (Category $category) => view('posts', ['posts' => $category->posts,]));
+
+Route::get('/author/{author}', fn (User $author) => view('posts', ['posts' => $author->posts,]));
