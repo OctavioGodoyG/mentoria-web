@@ -45,23 +45,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn () =>
 view('posts', [
     'posts' =>
-    Post::latest('published_at')->with(['category', 'author'])->get()
+    Post::latest('published_at')
+        ->with(['category', 'author'])->get()
 ]));
 
-Route::get('/post/{post}', fn (Post $post) => view('post', ['post' => $post,]));
+Route::get('/post/{post}', fn (Post $post) =>
+view('post', ['post' => $post,]));
 
 Route::get(
     '/category/{category:slug}',
     function (Category $category) {
         return view(
             'posts',
-            [
-                'posts' => $category->posts->load(
-                    [
-                        'category', 'author'
-                    ]
-                )
-            ],
+            ['posts' => $category->posts->load(['category', 'author'])],
         );
     }
 );
@@ -69,16 +65,12 @@ Route::get(
 Route::get(
     '/author/{author}',
     function (User $author) {
+
         // dd($author->posts->load(['category', 'author']));
-        // dd(User::with(['category', 'author'])->get() );
+        // dd(User::with(['user_id', 'author'])->get());
         return view(
-            [
-                'posts' => $author->posts->load(
-                    [
-                        'category', 'author'
-                    ]
-                )
-            ],
+            'posts',
+            ['posts'  => $author->posts->load(['category', 'author'])],
         );
     }
 );
