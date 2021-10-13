@@ -8,7 +8,9 @@
         <div class="lg:grid lg:grid-cols-2">
 
             @foreach($posts->skip(1) as $post)
-                <x-post-card :post="$post" class="bg-yellow-200" />
+
+            <x-post-card :post="$post" class="bg-yellow-200"/>
+
             @endforeach
 
         </div>
