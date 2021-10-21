@@ -14,11 +14,11 @@
 
                 <div class="mt-4">
                     <h1 class="text-3xl">
-                        {{$post->title}}
+                        {{ $post->title }}
                     </h1>
 
                     <span class="mt-2 block text-gray-400 text-xs">
-                        Published <time> {{$post->published_at}}
+                        Published <time> {{ $post->published_at }}
                         </time>
                     </span>
                 </div>
@@ -26,7 +26,7 @@
 
             <div class="text-sm mt-2">
                 <p>
-                    {{$post->resumen}}
+                    {{ $post->resumen }}
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
-                        <h5 class="font-bold"> <a href="/author/{{$post->user_id}}">{{$post->author->name}}</a> </h5>
+                        <h5 class="font-bold"> {{ $post->author->name }}</h5>
                         <h6>Mascot at SEGIC</h6>
                     </div>
                 </div>
@@ -45,6 +45,6 @@
             </footer>
         </div>
 
-        
+
     </div>
 </article>
