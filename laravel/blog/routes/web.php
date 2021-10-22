@@ -48,7 +48,7 @@ view('posts', [
     Post::latest('published_at')
         ->with(['category', 'author'])->get()
         ,'categories' => Category::all()
-]));
+]))->name('home');
 
 Route::get('/post/{post}', fn (Post $post) =>
 view('post', ['post' => $post,]));
