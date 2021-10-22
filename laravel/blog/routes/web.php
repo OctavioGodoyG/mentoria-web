@@ -47,6 +47,7 @@ view('posts', [
     'posts' =>
     Post::latest('published_at')
         ->with(['category', 'author'])->get()
+        ,'categories' => Category::all()
 ]));
 
 Route::get('/post/{post}', fn (Post $post) =>
@@ -57,7 +58,8 @@ Route::get(
     function (Category $category) {
         return view(
             'posts',
-            ['posts' => $category->posts->load(['category', 'author'])],
+            ['posts' => $category->posts->load(['category', 'author'])
+            ,'categories' => Category::all()],
         );
     }
 );

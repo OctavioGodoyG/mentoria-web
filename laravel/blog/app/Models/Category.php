@@ -10,10 +10,10 @@ class Category extends Model
     use HasFactory;
 
     //Evita pasar parametro en slug web
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     //hasOne , hasMany, belongsTo, belongsToMany
     public function posts(){
